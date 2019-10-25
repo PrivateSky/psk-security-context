@@ -1,9 +1,10 @@
 const TestSecurityContext = require("./lib/TestSecurityContext");
 const EncryptedSecret = require("./lib/EncryptedSecret");
+const EncryptedSecretList = require("./lib/EncryptedSecretList");
 const AgentList = require("./lib/AgentList");
 const PSKSignature = require("./lib/PSKSignature");
 
-module.exports.createSecurityContext = function (securityContextType) {
+module.exports.createSecurityContext = (securityContextType) => {
     switch (securityContextType) {
         case "test":
             return new TestSecurityContext();
@@ -11,14 +12,18 @@ module.exports.createSecurityContext = function (securityContextType) {
     }
 };
 
-module.exports.createEncryptedSecret = function (encryptedData, agentId) {
-    return new EncryptedSecret(encryptedData, agentId);
+module.exports.createEncryptedSecret = (serializedEncryptedSecret) => {
+    return new EncryptedSecret(serializedEncryptedSecret);
 };
 
-module.exports.createAgentList = function () {
-    return new AgentList();
+module.exports.createEncryptedSecretList = (serializedEncryptedSecretList) => {
+    return new EncryptedSecretList(serializedEncryptedSecretList);
 };
 
-module.exports.createPSKSignature = function (message, signature, type, agentId) {
-    return new PSKSignature(message, signature, type, agentId);
+module.exports.createAgentList = (serializedAgentList) => {
+    return new AgentList(serializedAgentList);
+};
+
+module.exports.createPSKSignature = (serializedPSKSignature) => {
+    return new PSKSignature(serializedPSKSignature);
 };
