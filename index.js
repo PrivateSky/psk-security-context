@@ -6,7 +6,7 @@ const PSKSignature = require("./lib/PSKSignature");
 
 module.exports.createSecurityContext = (securityContextType) => {
     switch (securityContextType) {
-        case "test":
+        case "CSBSecurityContext":
             return new TestSecurityContext();
         default:
     }
