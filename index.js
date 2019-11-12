@@ -1,5 +1,6 @@
 const RawCSBSecurityContext = require("./lib/RawCSBSecurityContext");
 const RootCSBSecurityContext = require("./lib/RootCSBSecurityContext");
+const SecurityContext = require("./lib/SecurityContext");
 const EncryptedSecret = require("./lib/EncryptedSecret");
 const PSKSignature = require("./lib/PSKSignature");
 
@@ -10,6 +11,7 @@ module.exports.createSecurityContext = (securityContextType, ...args) => {
         case "RawCSBSecurityContext":
             return new RawCSBSecurityContext(...args);
         default:
+            return new SecurityContext(...args);
     }
 };
 
